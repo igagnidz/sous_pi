@@ -27,7 +27,7 @@ Ext.define('SousPi.view.Main', {
 
                     proxy: {
 //                        type: 'json',
-                        url: 'http://lvh.me:9292/all',
+                        url: '/all',
                         reader: {
                             type: 'json',
                             rootProperty: 'devices'
