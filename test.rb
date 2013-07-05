@@ -12,8 +12,8 @@ class AppTest < Test::Unit::TestCase
     Sinatra::Application
   end
 
-  def test_it_gets_root_success
-    get '/'
+  def test_it_gets_all_success
+    get '/all'
     assert_equal({ success: true, devices: Heater.all }.to_json, last_response.body)
   end
 
@@ -27,6 +27,21 @@ class AppTest < Test::Unit::TestCase
     assert_equal({ success: true, device: Heater[1].to_h }.to_json, last_response.body)
   end
 
+  def test_heater_model_hash
+    assert_equal(Heater[1].to_h.keys, [:id, :set_temperature, :temperature, :enabled, :enabled_at])
+  end
 
+  def test_heater_model_set_temperature
+    heater = Heater[1]
+    heater.temperature = 20
+    assert_equal heater.set_temperature, 20
+  end
 
+  def test_heater_model_enable
+    heater = Heater[1]
+    heater.enabled = false
+    assert_equal heater.enabled, false
+    heater.enabled = true
+    assert_equal heater.enabled, true
+  end
 end

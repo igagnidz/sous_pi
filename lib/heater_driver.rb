@@ -1,5 +1,5 @@
 module HeaterDriver
-  attr_reader :id, :enabled, :enabled_at
+  attr_reader :id, :enabled, :enabled_at, :set_temperature
 
   def self.included(base)
     base.extend ClassMethods
@@ -10,8 +10,7 @@ module HeaterDriver
   end
 
   def temperature
-    @set_temperature = @set_temperature.to_i
-    (@set_temperature-10..@set_temperature+10).to_a[rand(19)]
+    @set_temperature
   end
 
   def temperature=(val)

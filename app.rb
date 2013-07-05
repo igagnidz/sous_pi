@@ -6,7 +6,7 @@ end
 
 #routing begin
 
-get "/" do
+get "/all" do
   { success: true, devices: Heater.all }.to_json
 end
 
