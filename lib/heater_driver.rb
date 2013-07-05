@@ -38,9 +38,18 @@ module HeaterDriver
         Heater.heaters[id.to_i] = Heater.new(id.to_i)
       end
       Heater.heaters[id.to_i]
-
     end
 
-  end
+    def all
+      (1..4).to_a.map{|h| heaters[h].to_h}
+    end
 
+    def heaters
+      @heaters = @heaters || []
+      if @heaters == []
+        @heaters = (1..4).to_a.map{ |x| Heater.new(x)}.to_a.unshift(nil)
+      end
+      @heaters
+    end
+  end
 end
